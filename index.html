@@ -17,7 +17,7 @@
                 <input type="text" id="city-search" placeholder="Inserisci il nome della città">
             </form>
                 <p><a href=search>
-                <button class="rounded-button" type="submit" onclick="callAPI(document.getElementById('fName').value)">Search</button>
+                <button id="search-button" class="rounded-button" type="submit" onclick="callAPI(document.getElementById('city-search').value)">Search</button>
                 </a></p>
             <b style="font-size: 25px">{{ username }}</b>
         </section>
@@ -103,28 +103,35 @@
 </body>
 </html>
 <script>
-        // define the callAPI function that takes a first name and last name as parameters
-        var callAPI = (city)=>{
-            // instantiate a headers object
-            var myHeaders = new Headers();
-            // add content type header to object
-            myHeaders.append("Content-Type", "application/json");
-            // using built in JSON utility package turn object to string and store in a variable
-            var raw = JSON.stringify({"city":city});
-            // create a JSON object with parameters for API call and store in a variable
-            var requestOptions = {
-                method: 'POST',
-                headers: myHeaders,
-                body: raw,
-                redirect: 'follow'
-            };
-            // make API call with parameters and use promises to get response
-            fetch("https://k3d4583cc0.execute-api.us-east-1.amazonaws.com/dev", requestOptions)
-            .then(response => response.text())
-            .then(result => alert(JSON.parse(result).body))
-            .catch(error => console.log('error', error));
-        }
-    </script>
+    // Modifica la funzione callAPI per effettuare una richiesta POST all'API Gateway
+var callAPI = () => {
+    // Ottieni il valore inserito nell'input della città
+    var cityName = document.getElementById('city-search').value;
+
+    // Crea un oggetto dati da inviare
+    var data = {
+        cityName: cityName
+    };
+
+    // Imposta l'URL del tuo endpoint API Gateway
+    var api_url = "https://k3d4583cc0.execute-api.us-east-1.amazonaws.com/dev"; // Sostituisci con l'URL reale
+
+    // Effettua una richiesta POST all'API Gateway
+    fetch(api_url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    })
+    .then(response => response.json())
+    .then(result => {
+        // Qui puoi elaborare la risposta dall'API, ad esempio, aggiornando la visualizzazione dei dati
+        console.log(result);
+    })
+    .catch(error => console.log('Errore nella richiesta API:', error));
+}
+
 <script>
     // Funzione per aggiornare Max temp
     function updateMaxTemp(day) {
