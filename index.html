@@ -27,7 +27,7 @@
         <p>Check out today's weather.</p>
     </section>
     <section class="weather-container">
-    
+        <div id="weather-result"></div>
         <div class="today-card">
             <h2>Lunedì</h2>
             <img src="..\static\images\sun.png" alt="Nome della città">
@@ -123,12 +123,13 @@
             },
             body: JSON.stringify(data)
         })
-        .then(response => response.json())
+        .then(response => response.text()) // Usa response.text() per ottenere una stringa
         .then(result => {
-            // Qui puoi elaborare la risposta dall'API, ad esempio, aggiornando la visualizzazione dei dati
-            console.log(result);
+            // Mostra la stringa sulla pagina HTML
+            var resultContainer = document.getElementById("weather-result");
+            resultContainer.textContent = result;
         })
-        .catch(error => console.log('Errore nella richiesta API:', error));
+    .catch(error => console.log('Errore nella richiesta API:', error));
     }
 </script>
 
