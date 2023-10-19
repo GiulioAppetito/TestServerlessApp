@@ -56,7 +56,7 @@
         <div class="day-card" id="lunedì">
             <h2>Lunedì</h2>
             <img src="..\static\images\storm.png" alt="Nome della città">
-            <p>Max temp: <span class="temperature">25°C</span></p>
+            <p>Max temp: <span class="temperature">1234°C</span></p>
         </div>
         <div class="day-card" id="'martedì">
             <h2>Martedì</h2>
@@ -117,7 +117,7 @@
     
     
         // Crea un oggetto dati da inviare
-        var data = {
+        var requestData = {
             name: cityName
         };
     
@@ -130,7 +130,7 @@
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(data)
+            body: JSON.stringify(requestData)
         })
         .then(response => response.json()) // Parsa la risposta come JSON
         .then(data => {
