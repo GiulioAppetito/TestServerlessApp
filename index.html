@@ -109,21 +109,7 @@
     </footer>
 </body>
 </html>
-<script>
-  // Supponiamo che "data" sia la risposta JSON ottenuta dalla tua chiamata API
-  var data = {
-    "message": "Dati meteo",
-    "name": "NomeCittà",
-    "temperature": "25°C",
-    "humidity": "35%"
-  };
 
-  // Estrai i valori dalla risposta JSON e inseriscili negli elementi HTML
-  document.getElementById("message").textContent = data.message;
-  document.getElementById("name").textContent = data.name;
-  document.getElementById("temperature").textContent = data.temperature;
-  document.getElementById("humidity").textContent = data.humidity;
-</script>
 <script>
     var callAPI = () => {
         // Ottieni il valore inserito nell'input della città
@@ -145,13 +131,15 @@
             },
             body: JSON.stringify(data)
         })
-        .then(response => response.text()) // Usa response.text() per ottenere una stringa
-        .then(result => {
-            // Mostra la stringa sulla pagina HTML
-            var resultContainer = document.getElementById("weather-result");
-            resultContainer.textContent = result;
-        })
-    .catch(error => console.log('Errore nella richiesta API:', error));
+        .then(response => response.json()) // Parsa la risposta come JSON
+        .then(data => {
+            // Inserisci i valori estratti nella pagina HTML
+            document.getElementById("message").textContent = data.message;
+            document.getElementById("name").textContent = data.name;
+            document.getElementById("temperature").textContent = data.temperature;
+            document.getElementById("humidity").textContent = data.humidity;
+    })
+    .catch(error => console.error('Errore nella richiesta API:', error));
     }
 </script>
 
