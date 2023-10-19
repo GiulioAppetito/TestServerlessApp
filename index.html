@@ -140,7 +140,10 @@
             document.getElementById("temperature").textContent = data.temperature;
             document.getElementById("humidity").textContent = data.humidity;
             console.log(data);
-    })
+    }).catch(error => {
+                    console.error('Errore nella richiesta API:', error);
+                    document.getElementById("responseText").textContent = "Errore nella richiesta API";
+                });
     .catch(error => console.error('Errore nella richiesta API:', error));
     }
 </script>
