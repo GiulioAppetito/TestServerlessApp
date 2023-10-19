@@ -38,7 +38,7 @@
         <div class="today-card">
             <h2>Lunedì</h2>
             <img src="..\static\images\sun.png" alt="Nome della città">
-            <p>Temp: <span class="temperature">25°C</span></p>
+            <p>Temp: <span class="temperature">2589°C</span></p>
             <p>Humidity: <span class="temperature">35%</span></p>
         </div>
         <div class="today-card">
@@ -135,7 +135,7 @@
         .then(response => response.json()) // Parsa la risposta come JSON
         .then(result => {
             // Inserisci i valori estratti nella pagina HTML
-            document.getElementById("message").textContent = result.message;
+            document.getElementById("message").textContent = "Città di prova";
             document.getElementById("name").textContent = result.name;
             document.getElementById("temperature").textContent = result.temperature;
             document.getElementById("humidity").textContent = result.humidity;
