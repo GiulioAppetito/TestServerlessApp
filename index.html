@@ -26,8 +26,15 @@
         <h2>Today</h2>
         <p>Check out today's weather.</p>
     </section>
+    <div id="weather-info">
+      <p>Messaggio: <span id="message"></span></p>
+      <p>Nome: <span id="name"></span></p>
+      <p>Temperatura: <span id="temperature"></span></p>
+      <p>Umidità: <span id="humidity"></span></p>
+    </div>
+
+<!-- JavaScript per estrarre e visualizzare i valori della risposta JSON -->
     <section class="weather-container">
-        <div id="weather-result">weather result</div>
         <div class="today-card">
             <h2>Lunedì</h2>
             <img src="..\static\images\sun.png" alt="Nome della città">
@@ -102,6 +109,21 @@
     </footer>
 </body>
 </html>
+<script>
+  // Supponiamo che "data" sia la risposta JSON ottenuta dalla tua chiamata API
+  var data = {
+    "message": "Dati meteo",
+    "name": "NomeCittà",
+    "temperature": "25°C",
+    "humidity": "35%"
+  };
+
+  // Estrai i valori dalla risposta JSON e inseriscili negli elementi HTML
+  document.getElementById("message").textContent = data.message;
+  document.getElementById("name").textContent = data.name;
+  document.getElementById("temperature").textContent = data.temperature;
+  document.getElementById("humidity").textContent = data.humidity;
+</script>
 <script>
     var callAPI = () => {
         // Ottieni il valore inserito nell'input della città
