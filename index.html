@@ -115,10 +115,7 @@
         // Ottieni il valore inserito nell'input della città
         var cityName = document.getElementById('city-search').value;
     
-        // Crea un oggetto dati da inviare
-        var data = {
-            name: cityName
-        };
+    
     
         // Imposta l'URL del tuo endpoint API Gateway
         var api_url = "https://k3d4583cc0.execute-api.us-east-1.amazonaws.com/dev"; // Sostituisci con l'URL reale
@@ -132,12 +129,12 @@
             body: JSON.stringify(data)
         })
         .then(response => response.json()) // Parsa la risposta come JSON
-        .then(data => {
+        .then(result => {
             // Inserisci i valori estratti nella pagina HTML
-            document.getElementById("message").textContent = data.message;
-            document.getElementById("name").textContent = data.name;
-            document.getElementById("temperature").textContent = data.temperature;
-            document.getElementById("humidity").textContent = data.humidity;
+            document.getElementById("message").textContent = result.message;
+            document.getElementById("name").textContent = result.name;
+            document.getElementById("temperature").textContent = result.temperature;
+            document.getElementById("humidity").textContent = result.humidity;
     })
     .catch(error => console.error('Errore nella richiesta API:', error));
     }
