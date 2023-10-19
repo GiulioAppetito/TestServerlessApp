@@ -103,57 +103,32 @@
 </body>
 </html>
 <script>
-    // Modifica la funzione callAPI per effettuare una richiesta POST all'API Gateway
-var callAPI = () => {
-    // Ottieni il valore inserito nell'input della città
-    var cityName = document.getElementById('city-search').value;
-
-    // Crea un oggetto dati da inviare
-    var data = {
-        name: cityName
-    };
-
-    // Imposta l'URL del tuo endpoint API Gateway
-    var api_url = "https://k3d4583cc0.execute-api.us-east-1.amazonaws.com/dev"; // Sostituisci con l'URL reale
-
-    // Effettua una richiesta POST all'API Gateway
-    fetch(api_url, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data)
-    })
-    .then(response => response.json())
-    .then(result => {
-        // Qui puoi elaborare la risposta dall'API, ad esempio, aggiornando la visualizzazione dei dati
-        console.log(result);
-    })
-    .catch(error => console.log('Errore nella richiesta API:', error));
-}
-    </script>
-<script>
-    // Funzione per aggiornare Max temp
-    function updateMaxTemp(day) {
-        // Trova l'elemento "Max temp" all'interno della "day-card" specifica
-        var maxTempElement = document.querySelector(`#${day} .temperature`);
-        
-        // Estrai il valore corrente e convertilo in un numero
-        var currentMaxTemp = parseFloat(maxTempElement.textContent);
-        
-        // Incrementa il valore di 1
-        var newMaxTemp = currentMaxTemp + 1;
-        
-        // Aggiorna il testo con il nuovo valore
-        maxTempElement.textContent = newMaxTemp + "°C";
+    var callAPI = () => {
+        // Ottieni il valore inserito nell'input della città
+        var cityName = document.getElementById('city-search').value;
+    
+        // Crea un oggetto dati da inviare
+        var data = {
+            name: cityName
+        };
+    
+        // Imposta l'URL del tuo endpoint API Gateway
+        var api_url = "https://k3d4583cc0.execute-api.us-east-1.amazonaws.com/dev"; // Sostituisci con l'URL reale
+    
+        // Effettua una richiesta POST all'API Gateway
+        fetch(api_url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+        .then(response => response.json())
+        .then(result => {
+            // Qui puoi elaborare la risposta dall'API, ad esempio, aggiornando la visualizzazione dei dati
+            console.log(result);
+        })
+        .catch(error => console.log('Errore nella richiesta API:', error));
     }
-
-    // Aggiungi un gestore di eventi di click per ciascuna "day-card"
-    var dayCards = document.querySelectorAll(".day-card");
-    dayCards.forEach(function (dayCard) {
-        dayCard.addEventListener("click", function () {
-            var day = this.getAttribute("id");
-            updateMaxTemp(day);
-        });
-    });
 </script>
+
