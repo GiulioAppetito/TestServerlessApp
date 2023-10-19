@@ -116,6 +116,10 @@ o<!DOCTYPE html>
         var cityName = document.getElementById('city-search').value;
     
     
+        // Crea un oggetto dati da inviare
+        var data = {
+            name: cityName
+        };
     
         // Imposta l'URL del tuo endpoint API Gateway
         var api_url = "https://k3d4583cc0.execute-api.us-east-1.amazonaws.com/dev"; // Sostituisci con l'URL reale
@@ -126,7 +130,7 @@ o<!DOCTYPE html>
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(response)
+            body: JSON.stringify(data)
         })
         .then(response => response.json()) // Parsa la risposta come JSON
         .then(result => {
